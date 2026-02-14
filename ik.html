@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Our Love Story ❤️</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:black;
+  color:white;
+  text-align:center;
+  overflow:hidden;
+}
+
+.section{
+  display:none;
+  height:100vh;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  padding:30px;
+}
+
+.active{
+  display:flex;
+}
+
+button{
+  padding:12px 25px;
+  margin:20px;
+  border:none;
+  border-radius:25px;
+  font-size:16px;
+  cursor:pointer;
+  background:#ff4da6;
+  color:white;
+}
+
+img{
+  width:600px;
+  height:400px;
+  object-fit:cover;
+  border-radius:20px;
+  box-shadow:0 0 30px hotpink;
+}
+
+.ending{
+  font-size:50px;
+  color:#ff4da6;
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" loop>
+  <source src="song.mp3" type="audio/mp3">
+</audio>
+
+<!-- INTRO -->
+<div id="intro" class="section active">
+  <h1>Hey… ❤️</h1>
+  <p>Mujhe tumse kuch kehna hai…</p>
+  <button onclick="startPromises()">Continue ❤️</button>
+</div>
+
+<!-- PROMISE SLIDE -->
+<div id="promiseSlide" class="section">
+  <h1 id="promiseTitle"></h1>
+  <p id="promiseText"></p>
+</div>
+
+<!-- REASON SLIDE -->
+<div id="reasonSlide" class="section">
+  <h1 id="reasonText"></h1>
+</div>
+
+<!-- PROPOSAL -->
+<div id="proposal" class="section">
+  <h1>Meri Valentine Banogi Kya? ❤️</h1>
+  <button onclick="startSlideshow()">Yes 😍</button>
+</div>
+
+<!-- SLIDESHOW -->
+<div id="slideshow" class="section">
+  <img id="photo" src="main/pic1.png">
+</div>
+
+<!-- FINAL -->
+<div id="ending" class="section">
+  <h1 class="ending">I Love You Forever ❤️</h1>
+  <p style="margin-top:25px; font-size:18px; max-width:600px;">
+    And I’m sorry for every little mistake,
+    for every time I hurt you unknowingly,
+    and for every moment I wasn’t perfect.
+    Just know… I truly love you. ❤️
+  </p>
+</div>
+
+<script>
+
+// START PROMISES + MUSIC
+function startPromises(){
+  document.getElementById("intro").classList.remove("active");
+  document.getElementById("promiseSlide").classList.add("active");
+  document.getElementById("bgMusic").play();
+  showPromise();
+  autoPromises();
+}
+
+// 7 PROMISES AUTO
+const promises = [
+"I promise to choose you every single day.",
+"I promise to protect your smile forever.",
+"I promise to stand beside you in every storm.",
+"I promise to understand you even in silence.",
+"I promise to support your dreams always.",
+"I promise to never give up on us.",
+"I promise to love you more every single day ❤️"
+];
+
+let promiseIndex = 0;
+
+function showPromise(){
+  document.getElementById("promiseTitle").innerText =
+    "💖 Promise " + (promiseIndex+1);
+  document.getElementById("promiseText").innerText =
+    promises[promiseIndex];
+}
+
+function autoPromises(){
+  let interval = setInterval(()=>{
+    promiseIndex++;
+    if(promiseIndex < promises.length){
+      showPromise();
+    } else {
+      clearInterval(interval);
+      setTimeout(()=>{
+        document.getElementById("promiseSlide").classList.remove("active");
+        startReasons();
+      },3000);
+    }
+  },3000);
+}
+
+// 100 REASONS AUTO
+const reasons = [
+"You make my ordinary days special.",
+"You understand me without words.",
+"Your smile fixes my worst moods.",
+"You are my safe place.",
+"You support my dreams.",
+"You believe in me when I don’t.",
+"You make me laugh at the right time.",
+"You calm my overthinking.",
+"You listen to my nonsense patiently.",
+"You respect me.",
+"You trust me.",
+"You motivate me.",
+"You make my heart feel full.",
+"You make me feel wanted.",
+"You care about small things.",
+"You remember tiny details.",
+"You make simple moments magical.",
+"You make me feel lucky.",
+"You are honest with me.",
+"You stay even when things get hard.",
+"You forgive me.",
+"You make me want to be better.",
+"You inspire me.",
+"You are my peace.",
+"You are my comfort.",
+"You make my world brighter.",
+"You understand my silence.",
+"You hold my hand in tough times.",
+"You never judge me.",
+"You make me feel important.",
+"You celebrate my wins.",
+"You stand by me in losses.",
+"You are my favorite notification.",
+"You make my heart race.",
+"You are my best friend.",
+"You are my partner.",
+"You are my happiness.",
+"You make everything feel easier.",
+"You make love feel safe.",
+"You accept my flaws.",
+"You make my bad days better.",
+"You make my good days amazing.",
+"You choose me every day.",
+"You are loyal.",
+"You are caring.",
+"You are strong.",
+"You are kind.",
+"You are beautiful inside and out.",
+"You make my life colorful.",
+"You bring positivity.",
+"You make distance feel small.",
+"You make time stop.",
+"You give me butterflies.",
+"You understand my mood swings.",
+"You comfort me.",
+"You make me smile randomly.",
+"You are my home.",
+"You make love feel simple.",
+"You are my favorite person.",
+"You are my forever.",
+"You make me proud.",
+"You make me feel loved.",
+"You are patient with me.",
+"You make memories beautiful.",
+"You surprise me.",
+"You protect my heart.",
+"You respect my space.",
+"You share your world with me.",
+"You make me feel chosen.",
+"You make life worth living.",
+"You trust my love.",
+"You stand strong with me.",
+"You make everything meaningful.",
+"You care deeply.",
+"You make small talks special.",
+"You make silence peaceful.",
+"You make effort for us.",
+"You never give up on us.",
+"You are my sunshine.",
+"You are my calm in chaos.",
+"You make me feel secure.",
+"You hold me emotionally.",
+"You give me strength.",
+"You are thoughtful.",
+"You value us.",
+"You make future look bright.",
+"You make love feel real.",
+"You bring warmth.",
+"You make my heart soft.",
+"You are my comfort zone.",
+"You understand my heart.",
+"You give me hope.",
+"You make me feel alive.",
+"You make everything better.",
+"You are my always.",
+"You are my forever person.",
+"You complete my world."
+];
+
+let reasonIndex = 0;
+
+function startReasons(){
+  document.getElementById("reasonSlide").classList.add("active");
+  showReason();
+  autoReasons();
+}
+
+function showReason(){
+  document.getElementById("reasonText").innerText =
+    (reasonIndex+1) + ". " + reasons[reasonIndex];
+}
+
+function autoReasons(){
+  let interval = setInterval(()=>{
+    reasonIndex++;
+    if(reasonIndex < reasons.length){
+      showReason();
+    } else {
+      clearInterval(interval);
+      setTimeout(()=>{
+        document.getElementById("reasonSlide").classList.remove("active");
+        document.getElementById("proposal").classList.add("active");
+      },3000);
+    }
+  },2000);
+}
+
+// PHOTO SLIDESHOW
+const images=[
+"main/pic1.png",
+"main/pic2.png",
+"main/pic3.png",
+"main/pic4.png",
+"main/pic5.png",
+"main/pic6.png"
+];
+
+let photoIndex=0;
+
+function startSlideshow(){
+  document.getElementById("proposal").classList.remove("active");
+  document.getElementById("slideshow").classList.add("active");
+
+  let interval=setInterval(()=>{
+    document.getElementById("photo").src=images[photoIndex];
+    photoIndex++;
+    if(photoIndex>=images.length){
+      clearInterval(interval);
+      setTimeout(()=>{
+        document.getElementById("slideshow").classList.remove("active");
+        document.getElementById("ending").classList.add("active");
+      },3000);
+    }
+  },3000);
+}
+
+</script>
+
+</body>
+</html>
